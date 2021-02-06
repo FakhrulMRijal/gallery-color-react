@@ -4,24 +4,24 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reac
 import randomColor from 'randomcolor';
 
 function App() {
-  const [color, setColor] = useState("random");
-  const [randColor, setRandColor] = useState([]);
-  const [dropdownOpen, setDropDownOpen] = useState(false);
-  const [categoryStr, setCategoryStr] = useState('Category');
-  const [darker, setDarker] = useState(false);
+  const [color, setColor] = useState<string>('random');
+  const [randColor, setRandColor] = useState<string[]>([]);
+  const [dropdownOpen, setDropDownOpen] = useState<boolean>(false);
+  const [categoryStr, setCategoryStr] = useState<string>('Category');
+  const [darker, setDarker] = useState<boolean>(false);
 
   useEffect(() => {
     const colors = randomColor({
       count: 40,
       luminosity: darker ? 'dark' : 'light',
       hue: color
-    }) as any
+    })
     setRandColor(colors);
   }, [color, darker]);
 
   const toggle = () => setDropDownOpen(!dropdownOpen);
   
-  const handleDropdownClick = (name: any) => {
+  const handleDropdownClick = (name: string) => {
     setColor(name)
     setCategoryStr(name)
   }
